@@ -1,6 +1,6 @@
 def usar_la_fuerza(mochila, objetos =0):
     if not mochila:
-        print("No se encontro el sable de luz.")
+        print("No se encontro el sable de luz")
         return False, objetos
     
     if mochila[0] == 'sable de luz':
@@ -10,19 +10,8 @@ def usar_la_fuerza(mochila, objetos =0):
         print(f"Se saco el objeto '{mochila[0]}' de la mochila")
         return usar_la_fuerza(mochila[1:], objetos + 1)
 
-def ingresar_mochila(mochila=None):
-    if mochila is None:
-        mochila = []
-    
-    objeto = input("Ingrese un objeto para la mochila (o 'fin' para terminar): ")
-    if objeto != 'fin':
-        mochila = mochila + [objeto]
-        return ingresar_mochila(mochila)
-    else:
-        return mochila
-
-
-mochila=ingresar_mochila()
+#Vector
+mochila = ["comida", "agua", "mapa", "sable de luz"]
 encontrado, objetos_necesarios = usar_la_fuerza(mochila)
 if encontrado:  
     print(f"Se necesitaron sacar {objetos_necesarios} objetos para encontrar el sable de luz en la mochila")
