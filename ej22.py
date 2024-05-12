@@ -1,22 +1,22 @@
-def usar_la_fuerza(mochila, posicion=0, objetos=0):
-    if len(mochila) == 0:
-        print("No se encontro el sable de luz")
+def usar_la_fuerza(mochila, objetos =0):
+    if not mochila:
+        print("No se encontro el sable de luz.")
         return False, objetos
     
-    if 'sable de luz' in mochila:
+    if mochila[0] == 'sable de luz':
         print("Si se encontro un sable de luz")
-        return True, objetos + mochila.index('sable de luz') + 1
+        return True, objetos+1
     else:
-        print(f"Se saco el objeto '{mochila[posicion]}' de la mochila")
-        return usar_la_fuerza(mochila, posicion + 1, objetos + 1)
+        print(f"Se saco el objeto '{mochila[0]}' de la mochila")
+        return usar_la_fuerza(mochila[1:], objetos + 1)
 
 mochila = []
 while True:
     objeto = input("Ingrese un objeto de la mochila (o fin para terminar): ")
-    if objeto.lower() == 'fin':
+    if objeto == 'fin':
         break
     mochila.append(objeto)
 
-encontrado, objetos_necesarios = usar_la_fuerza(mochila.copy())
+encontrado, objetos_necesarios = usar_la_fuerza(mochila)
 if encontrado:  
     print(f"Se necesitaron sacar {objetos_necesarios} objetos para encontrar el sable de luz en la mochila")
